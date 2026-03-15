@@ -1,151 +1,155 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Введення цілі</title>
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a0a0a">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Генератор доповіді</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a0a0a">
 </head>
-
 <body>
 
-<div class="container">
+<div class="container"> <!-- Обертання сторінки -->
+  <h1>Генератор доповіді</h1>
+  <div class="form">
+    <!-- Блок форми для вибора цілі -->
+    <div class="form-group">
+      <label for="target-type">Тип цілі</label>
+      <select id="target-type">
+        <option value="">Оберіть тип</option>
+        <option value="FPV-Дрон">FPV-Дрон</option>
+        <option value="FPV-Оптоволокно">FPV-Оптоволокно</option>
+        <option value="Молнія">БПЛА "Молнія"</option>
+        <option value="FPV-Ждун">FPV-Ждун</option>
+      </select>
+    </div>
+    <!-- Блок форми з часом та датою -->
+    <div class="form-group">
+      <label for="time">Час</label>
+      <div class="time-wrapper">
+        <input type="text" id="time" readonly>
+        <div class="time-buttons">
+          <button type="button" id="minus-btn">-</button>
+          <button type="button" id="plus-btn">+</button>
+        </div>
+      </div>
+    </div>
+    <!-- Блок висоти цілі -->
+    <div class="form-group">
+      <label for="height">Висота цілі (м)</label>
+      <input type="number" id="height" min="0" placeholder="Наприклад: 150">
+    </div>
+    <!-- Блок дальності до цілі -->
+    <div class="form-group">
+      <label for="distance">Дальність цілі (м)</label>
+      <input type="number" id="distance" min="0" placeholder="Наприклад: 120">
+    </div>
+    <!-- Блок азимут цілі -->
+    <div class="form-group">
+      <label for="azimuth">Азимут цілі (°)</label>
+      <input type="number" id="azimuth" min="0" max="360" placeholder="0–360">
+    </div>
+    <!-- Блок курс цілі -->
+    <div class="form-group">
+      <label for="course">Курс цілі (°)</label>
+      <input type="number" id="course" min="0" max="360" placeholder="0–360">
+    </div>
+    <!-- Блок ураження цілі -->
+    <div class="form-group">
+      <label>Результат ураження</label>
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="result" value="destroyed" id="result-destroyed" checked>
+          <span>Ціль знищена</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="result" value="not-destroyed" id="result-not-destroyed">
+          <span>Ціль не знищена</span>
+        </label>
+      </div>
+    </div>
+    <!-- Блок витрата набоїв для стрільця 1 -->
+    <div class="form-group">
+      <label>ст. с-нт. Фролов</label>
+      <div class="ammo-wrapper">
+        <!--
+        <select id="weapon-frolov" class="weapon-select">
+          <option value="АК-74/5.45 мм">АК-74 (5.45 мм)</option>
+          <option value="Safari/12 клб.">Safari (12 клб.)</option>
+          <option value="РПК-74/5.45 мм">РПК-74 (5.45 мм)</option>
+          <option value="ПКМ/7.62 мм">ПКМ (7.62 мм)</option>
+        </select>
+        -->
+        <select id="calibr1" class="weapon-select">
+          <option value="5.45 мм">5.45 мм</option>
+          <option value="12 клб.">12 клб.</option>
+          <option value="7.62 мм">7.62 мм</option>
+        </select>
 
-<h1>Введення цілі</h1>
+        <input type="number" id="ammo-frolov" min="0" placeholder="0">
 
-<div class="form">
+        <div class="ammo-buttons">
+          <button type="button" class="ammo-minus" data-target="ammo-frolov">-</button>
+          <button type="button" class="ammo-plus" data-target="ammo-frolov">+</button>
+        </div>
+      </div>
+    </div>
+    <!-- Блок витрата набоїв для стрільця 2 -->
+    <div class="form-group">
+      <label>ст. солд. Чаюн</label>
+      <div class="ammo-wrapper">
+        <!--
+        <select id="weapon-chayun" class="weapon-select">
+          <option value="АК-74/5.45 мм">АК-74 (5.45 мм)</option>
+          <option value="Safari/12 клб.">Safari (12 клб.)</option>
+          <option value="РПК-74/5.45 мм">РПК-74 (5.45 мм)</option>
+          <option value="ПКМ/5.45 мм">ПКМ (5.45 мм)</option>
+        </select>
+        -->
+        <select id="calibr2" class="weapon-select">
+          <option value="5.45 мм">5.45 мм</option>
+          <option value="12 клб.">12 клб.</option>
+          <option value="7.62 мм">7.62 мм</option>
+        </select>
 
-<div class="form-group">
-<label for="target-type">Тип цілі</label>
-<select id="target-type">
-<option value="">Оберіть тип</option>
-<option value="FPV-дрон">FPV-Дрон</option>
-<option value="Молнія">Молнія</option>
-<option value="FPV-Ждун">FPV-Ждун</option>
-</select>
-</div>
+        <input type="number" id="ammo-chayun" min="0" placeholder="0">
 
-<div class="form-group">
-<label for="time">Час (Київ)</label>
+        <div class="ammo-buttons">
+          <button type="button" class="ammo-minus" data-target="ammo-chayun">-</button>
+          <button type="button" class="ammo-plus" data-target="ammo-chayun">+</button>
+        </div>
 
-<div class="time-wrapper">
+      </div>
+    </div>
+    <!-- Блок комментарій -->
+    <!--
+    <div class="form-group">
+      <label for="comment">Коментар</label>
+      <textarea id="comment" rows="4" placeholder="Деталі..."></textarea>
+    </div>
+    -->
+    
+    <!-- Блок згенерованої доповіді -->
+    <div class="form-group">
+      <label for="report">Згенерована доповідь</label>
+      <textarea id="report" rows="11" readonly></textarea>
+    </div>
+    <!-- Блок кнопки копіювання доповіді -->
+    <div class="form-actions">
+      <button type="button" id="copy-report-btn">Копіювати доповідь</button>
+    </div>
 
-<input type="text" id="time" readonly>
+  </div><!-- Конец div form -->
 
-<div class="time-buttons">
-<button type="button" id="minus-btn">-</button>
-<button type="button" id="plus-btn">+</button>
-</div>
-
-</div>
-</div>
-
-<div class="form-group">
-<label for="height">Висота цілі (м)</label>
-<input type="number" id="height" min="0" placeholder="Наприклад: 150">
-</div>
-
-<div class="form-group">
-<label for="distance">Дальність цілі (м)</label>
-<input type="number" id="distance" min="0" placeholder="Наприклад: 1200">
-</div>
-
-<div class="form-group">
-<label for="azimuth">Азимут цілі (°)</label>
-<input type="number" id="azimuth" min="0" max="360" placeholder="0–360">
-</div>
-
-<div class="form-group">
-<label for="course">Курс цілі (°)</label>
-<input type="number" id="course" min="0" max="360" placeholder="0–360">
-</div>
-
-<div class="form-group">
-
-<label>Результат ураження</label>
-
-<div class="radio-group">
-
-<label class="radio-option">
-<input type="radio" name="result" value="destroyed" id="result-destroyed">
-<span>Ціль знищена</span>
-</label>
-
-<label class="radio-option">
-<input type="radio" name="result" value="not-destroyed" id="result-not-destroyed" checked>
-<span>Ціль не знищена</span>
-</label>
-
-</div>
-
-</div>
-
-<div class="form-group">
-
-<label>ст. с-нт Фролов</label>
-
-<div class="ammo-wrapper">
-
-<select id="weapon-frolov" class="weapon-select">
-<option value="АК-74 (5.45×39 мм)">АК-74 (5.45×39 мм)</option>
-<option value="Safari (12 калібр)">Safari (12 калібр)</option>
-</select>
-
-<input type="number" id="ammo-frolov" value="0">
-
-<div class="ammo-buttons">
-<button type="button" class="ammo-minus" data-target="ammo-frolov">-</button>
-<button type="button" class="ammo-plus" data-target="ammo-frolov">+</button>
-</div>
-
-</div>
-</div>
-
-<div class="form-group">
-
-<label>ст. солд Чаюн</label>
-
-<div class="ammo-wrapper">
-
-<select id="weapon-chayun" class="weapon-select">
-<option value="АК-74 (5.45×39 мм)">АК-74 (5.45×39 мм)</option>
-<option value="Safari (12 калібр)">Safari (12 калібр)</option>
-</select>
-
-<input type="number" id="ammo-chayun" value="0">
-
-<div class="ammo-buttons">
-<button type="button" class="ammo-minus" data-target="ammo-chayun">-</button>
-<button type="button" class="ammo-plus" data-target="ammo-chayun">+</button>
-</div>
-
-</div>
-</div>
-
-<div class="form-group">
-<label for="comment">Коментар</label>
-<textarea id="comment" rows="4" placeholder="Деталі..."></textarea>
-</div>
-
-<div class="form-group">
-<label for="report">Згенерована доповідь</label>
-<textarea id="report" rows="11" readonly></textarea>
-</div>
-
-<div class="form-actions">
-<button type="button" id="copy-report-btn">Копіювати доповідь</button>
-</div>
-
-</div>
-
-</div>
-
+</div> <!-- Конец div container -->
+<!-- Блок спливаючого повідомлення про копіювання -->
 <div id="toast" class="toast">
 Доповідь скопійовано
 </div>
 
+
+<!-- js скріпти -->
 <script src="script.js"></script>
 
 </body>
