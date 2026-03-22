@@ -1,0 +1,190 @@
+
+:root{
+  --bg:#080a08;
+  --surface:#0e110e;
+  --border:#1e221e;
+  --g:#3dff7a;
+  --g2:rgba(61,255,122,0.1);
+  --g3:rgba(61,255,122,0.3);
+  --red:#ff3d3d;
+  --blue:#4db8ff;
+  --text:#b8ccb0;
+  --muted:#4a5a44;
+  --mono:'Share Tech Mono',monospace;
+  --sans:'Rajdhani',sans-serif;
+}
+/* LANDING */
+
+#openBtn{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:1px solid var(--border);background:var(--surface);
+  cursor:pointer;outline:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:border-color .25s,box-shadow .25s;
+  color: #fff;
+  font-size: 20px;
+  color: #4ade80;
+}
+#openBtn:hover,#openBtn:active{border-color:var(--g);box-shadow:0 0 28px rgba(61,255,122,.15);}
+#openBtn svg{width:36px;height:36px;}
+.land-sub{margin-top:18px;font-size:12px;letter-spacing:.1em;color:var(--muted);}
+
+#azimuth-container {
+  position:fixed;
+  inset: 0;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  opacity:0;
+  pointer-events:none;
+  background: rgba(0,0,0,.9);
+  transition: all .35s;
+  padding: 20px;
+}
+/* APP */
+#app{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  background: #3c3c3c;
+  border-radius: 20px;
+  padding: 10px;
+}
+#azimuth-container.show{
+  opacity:1;
+  pointer-events:all;
+}
+
+/* Topbar */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-direction: column;
+  gap:20px;
+  padding:0 16px;
+  margin-bottom: 20px;
+}
+.topbar-title{
+  font-size:14px;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color: #4ade80;
+  
+}
+#closeBtn{
+  border:1px solid #4ade80;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #4ade80;
+  background:none;
+  cursor:pointer;
+  outline:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:border-color .2s;
+}
+.closeBtn:hover,#closeBtn:active{border-color:var(--red);}
+.closeBtn svg{width:11px;height:11px;}
+.closeBtn svg line{stroke:var(--muted);stroke-width:1.5;stroke-linecap:round;transition:stroke .2s;}
+.closeBtn:hover svg line,#closeBtn:active svg line{stroke:var(--red);}
+
+/* Hint */
+.hint{
+  font-size:12px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color: #4ade80;
+  text-align:center;
+  height:14px;
+  transition:color .3s;
+  margin-bottom: 20px;
+}
+.hint.active{
+  color:var(--g);
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* DIAL */
+#dialWrap{
+  position:relative;
+  width:min(78vw,310px);height:min(78vw,310px);
+  flex-shrink:0;
+  margin-bottom: 20px;
+}
+#dialSvg{width:100%;height:100%;overflow:visible;}
+
+/* Info bar */
+.info-bar{
+  display:flex;align-items:center;gap:0;
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  overflow:hidden;width:100%;max-width:320px;
+  margin-bottom: 20px;
+}
+.info-cell{
+  flex:1;padding:10px 14px;text-align:center;
+  border-right:1px solid var(--border);
+}
+.info-cell:last-child{border-right:none;}
+.info-label{
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color: #4ade80;
+  margin-bottom:3px;
+}
+.info-val{
+  font-family:var(--mono);
+  font-size:22px;
+  color: #4ade80;
+  transition:color .25s;
+  
+}
+.info-val.set-az{color:var(--red);}
+.info-val.set-crs{color:var(--blue);}
+
+
+#addValue {
+  background: #4ade80;
+  color: #fff;
+  cursor:pointer;
+  outline:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:border-color .2s;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+/* Reset button */
+#resetBtn{
+  padding:14px 28px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:none;
+  font-family:var(--sans);
+  font-size:12px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color: #4ade80;
+  cursor:pointer;
+  outline:none;
+  transition:background .2s,border-color .2s,color .2s;
+}
+#resetBtn:hover,#resetBtn:active{
+  background:rgba(255,61,61,.08);
+  border-color:rgba(255,61,61,.4);
+  color:var(--red);
+}
