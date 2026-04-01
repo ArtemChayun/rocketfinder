@@ -73,8 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultRadio=document.querySelector("input[name='result']:checked");
     let result="не вказано";
 
-    if(resultRadio){
-      result=resultRadio.value==="destroyed"?"знищена":"не знищена";
+    if(resultRadio.value === "destroyed") {
+     result = "знищена";
+    } else if(resultRadio.value === "not-destroyed") {
+     result = "не знищена";
+    } else {
+     result = "самознищена"
     }
 
     //const weaponFrolov=getVal("weapon-frolov");
